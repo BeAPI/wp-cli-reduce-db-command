@@ -177,12 +177,12 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		 *
 		 * ## EXAMPLES
 		 *
-		 *     wp reduce_db all
-		 *     wp reduce_db all --tables-to-truncate=postmeta,posts
+		 *     wp reduce_db
+		 *     wp reduce_db --tables-to-truncate=postmeta,posts
 		 *
 		 * @synopsis [--tables-to-filter]
 		 */
-		public function all( $positional_args, $assoc_args = [] ) {
+		public function __invoke( $positional_args, $assoc_args = [] ) {
 			WP_CLI::log( sprintf( 'The current environment is: %s', $this->environment ) );
 
 			// Get initial size

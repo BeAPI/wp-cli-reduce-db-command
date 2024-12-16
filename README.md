@@ -42,7 +42,7 @@ You also can update your package with `wp package update`
 
 Start database cleanup
 
-`wp reduce_db all`
+`wp reduce_db`
 
 ## Credits
 
