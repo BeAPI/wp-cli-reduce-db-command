@@ -168,7 +168,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 
 		/**
-		 * Start the complete cleaning process.
+		 * Significantly reduce the size of the WordPress database by removing non-essential data, revisions, transients, orphaned data, and keeping only the 500 most recent contents for each content type.
 		 *
 		 * ## OPTIONS
 		 *
@@ -177,8 +177,8 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		 *
 		 * ## EXAMPLES
 		 *
-		 *     wp reduce_db
-		 *     wp reduce_db --tables-to-truncate=postmeta,posts
+		 *     wp reduce-db
+		 *     wp reduce-db --tables-to-truncate=postmeta,posts
 		 *
 		 * @synopsis [--tables-to-filter]
 		 */
@@ -484,5 +484,5 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		}
 	}
 
-	WP_CLI::add_command( 'reduce_db', 'WP_CLI_Reduce_DB' );
+	WP_CLI::add_command( 'reduce-db', 'WP_CLI_Reduce_DB' );
 }
