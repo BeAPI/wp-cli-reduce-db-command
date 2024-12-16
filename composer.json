@@ -1,0 +1,20 @@
+{
+  "name": "beapi/wp-cli-reduce-db-command",
+  "description": "This command allows you to significantly reduce the size of the WordPress database by removing non-essential data, revisions, transients, orphaned data, and keeping only the 500 most recent contents for each content type.",
+  "type": "wp-cli-package",
+  "homepage": "https://github.com/BeAPI/wp-cli-reduce-db-command",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4"
+  },
+  "authors": [
+    {
+      "name": "Amaury BALMER",
+      "email": "amaury@beapi.fr"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "files": [ "command.php" ]
+  }
+}
