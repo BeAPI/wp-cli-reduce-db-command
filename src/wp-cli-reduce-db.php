@@ -302,23 +302,19 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 				$post_types = $wpdb->get_col( "SELECT post_type, count(ID) as counter FROM $wpdb->posts WHERE post_type != 'attachment' GROUP BY post_type HAVING count(ID) > 500" );
 
 				foreach ( $post_types as $post_type ) {
-					try {
-						$row_deleted_qty += $wpdb->query(
-							"
-								DELETE FROM $wpdb->posts WHERE ID NOT IN (
+					$row_deleted_qty += $wpdb->query(
+						"
+							DELETE FROM $wpdb->posts WHERE ID NOT IN (
+								SELECT ID
+								FROM (
 									SELECT ID
-									FROM (
-										SELECT ID
-										FROM $wpdb->posts
-										WHERE post_type = '{$post_type}'
-										ORDER BY post_date_gmt DESC
-										LIMIT 500
-									) AS recent_posts
-								);"
-						);
-					} catch ( Exception $e ) {
-						WP_CLI::warning( sprintf( 'An error occurred while deleting contents for site %s: %s', $site['name'], $e->getMessage() ) );
-					}
+									FROM $wpdb->posts
+									WHERE post_type = '{$post_type}'
+									ORDER BY post_date_gmt DESC
+									LIMIT 500
+								) AS recent_posts
+							);"
+					);
 				}
 
 				$this->restore_current_blog();
@@ -341,22 +337,18 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 				$this->switch_to_blog( $site['id'] );
 
-				try {
-					$row_deleted_qty = $wpdb->query(
-						"DELETE FROM $wpdb->comments 
-						WHERE comment_ID NOT IN (
+				$row_deleted_qty = $wpdb->query(
+					"DELETE FROM $wpdb->comments 
+					WHERE comment_ID NOT IN (
+						SELECT comment_ID 
+						FROM (
 							SELECT comment_ID 
-							FROM (
-								SELECT comment_ID 
-								FROM $wpdb->comments 
-								ORDER BY comment_date_gmt DESC 
-								LIMIT 500
-							) AS recent_comments
-						);"
-					);
-				} catch ( Exception $e ) {
-					WP_CLI::warning( sprintf( 'An error occurred while deleting comments for site %s: %s', $site['name'], $e->getMessage() ) );
-				}
+							FROM $wpdb->comments 
+							ORDER BY comment_date_gmt DESC 
+							LIMIT 500
+						) AS recent_comments
+					);"
+				);
 
 				$this->restore_current_blog();
 
