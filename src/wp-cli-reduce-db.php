@@ -197,6 +197,9 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			// Keep only fresh content
 			$this->remove_oldest_content();
 
+			// Keep only the 500 most recent comments
+			$this->remove_oldest_comments();
+
 			// Cleanup orphans content
 			$this->remove_orphans_content();
 
@@ -300,25 +303,55 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 				foreach ( $post_types as $post_type ) {
 					$row_deleted_qty += $wpdb->query(
-						"
-							DELETE FROM $wpdb->posts WHERE ID NOT IN (
+						"DELETE FROM $wpdb->posts WHERE ID NOT IN (
+							SELECT ID
+							FROM (
 								SELECT ID
-								FROM (
-									SELECT ID
-									FROM $wpdb->posts
-									WHERE post_type = '{$post_type}'
-									ORDER BY post_date DESC
-									LIMIT 500
-								) AS recent_posts
-							)
-							AND post_type = '{$post_type}';
-						"
+								FROM $wpdb->posts
+								WHERE post_type = '{$post_type}'
+								ORDER BY post_date_gmt DESC
+								LIMIT 500
+							) AS recent_posts
+						);"
 					);
 				}
 
 				$this->restore_current_blog();
 
 				WP_CLI::log( sprintf( '%d superfluous contents deleted', $row_deleted_qty ) );
+			}
+		}
+
+		/**
+		 * Keep only the 500 most recent comments per site.
+		 *
+		 * @return void
+		 */
+		private function remove_oldest_comments() {
+			global $wpdb;
+
+			foreach ( $this->get_sites() as $site ) {
+				$row_deleted_qty = 0;
+				WP_CLI::log( sprintf( 'Removing superfluous comments for site %s', $site['name'] ) );
+
+				$this->switch_to_blog( $site['id'] );
+
+				$row_deleted_qty = $wpdb->query(
+					"DELETE FROM $wpdb->comments 
+					WHERE comment_ID NOT IN (
+						SELECT comment_ID 
+						FROM (
+							SELECT comment_ID 
+							FROM $wpdb->comments 
+							ORDER BY comment_date_gmt DESC 
+							LIMIT 500
+						) AS recent_comments
+					);"
+				);
+
+				$this->restore_current_blog();
+
+				WP_CLI::log( sprintf( '%d superfluous comments deleted', $row_deleted_qty ) );
 			}
 		}
 
