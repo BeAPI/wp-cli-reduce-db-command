@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.0.4] - 2025-01-28
+### Changed
+- Fix issue with all contents removed instead of just keeping the 500 most recent.
+
 ## [0.0.3] - 2025-01-17
 ### Added
 - Functionality to retain only the 500 most recent comments for each site.

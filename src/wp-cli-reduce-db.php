@@ -303,16 +303,19 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 				foreach ( $post_types as $post_type ) {
 					$row_deleted_qty += $wpdb->query(
-						"DELETE FROM $wpdb->posts WHERE ID NOT IN (
-							SELECT ID
-							FROM (
+						"
+							DELETE FROM $wpdb->posts WHERE ID NOT IN (
 								SELECT ID
-								FROM $wpdb->posts
-								WHERE post_type = '{$post_type}'
-								ORDER BY post_date_gmt DESC
-								LIMIT 500
-							) AS recent_posts
-						);"
+								FROM (
+									SELECT ID
+									FROM $wpdb->posts
+									WHERE post_type = '{$post_type}'
+									ORDER BY post_date_gmt DESC
+									LIMIT 500
+								) AS recent_posts
+							)
+							AND post_type = '{$post_type}';
+						"
 					);
 				}
 
