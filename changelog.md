@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.0.5] - 2025-02-14
+### Changed
+- Improve SearchWP, Yoast SEO, WP Rocket & ActionScheduler exclusion
+### Added
+- New support for PublishPress Future (post-expirator), Rank Math & WordPress Native PHP Sessions
+
 ## [0.0.4] - 2025-01-28
 ### Changed
 - Fix issue with all contents removed instead of just keeping the 500 most recent.
