@@ -16,6 +16,8 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			// SearchWP 4.x
 			'searchwp_index',
 			'searchwp_log',
+			'searchwp_status',
+			'searchwp_tokens',
 
 			// Redirect LOG and redirection 404
 			'redirection_logs',
@@ -112,6 +114,8 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			// Yoast
 			'yoast_seo_links',
 			'yoast_seo_meta',
+			'yoast_indexable',
+			'yoast_indexable_hierarchy',
 
 			// Matomo
 			'matomo_access',
@@ -155,12 +159,25 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 
 			// WP-Rocket
 			'wpr_rocket_cache',
+			'wpr_above_the_fold',
+			'wpr_lazy_render_content',
 
 			// ActionScheduler
 			'actionscheduler_logs',
+			'actionscheduler_actions',
 
 			// WooCommerce
 			'woocommerce_sessions',
+
+			// WordPress Native PHP Sessions
+			'pantheon_sessions',
+
+			// Rank Math
+			'rank_math_internal_meta',
+			'rank_math_internal_links',
+
+			// PublishPress Future (post-expirator)
+			'postexpirator_debug'
 		];
 
 		public function __construct() {
