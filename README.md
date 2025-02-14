@@ -28,6 +28,8 @@ The following plugin data will be purged during optimization:
 - **GravityForms**
 - **Log HTTP Requests**
 - **Matomo**
+- **PublishPress Future (post-expirator)**
+- **Rank Math**
 - **Redirection**
 - **SearchWP 3.x & 4.x**
 - **Stream**
@@ -38,6 +40,7 @@ The following plugin data will be purged during optimization:
 - **WP Forms**
 - **WP Mail Log**
 - **WP Mail Logging**
+- **WordPress Native PHP Sessions**
 - **WP Rocket**
 - **WP Security Audit Log**
 - **WooCommerce**
