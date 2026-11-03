@@ -37,7 +37,7 @@ The following plugin data will be purged during optimization:
 - **TA Links**
 - **ThirstyAffiliates**
 - **WP All Export**
-- **WP Cerber**
+- **WP Cerber** (traffic, logs, access lists, blocked IPs, Cerber Lab IPs, request memory and user sessions)
 - **WP Forms**
 - **WP Mail Log**
 - **WP Mail Logging**
