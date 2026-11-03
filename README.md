@@ -21,6 +21,7 @@ The following plugin data will be purged during optimization:
 - **Action Scheduler**
 - **Broken Link Checker**
 - **Cavalcade**
+- **Complianz** (consent statistics)
 - **Contact Form 7**
 - **FacetWP**
 - **FormidableForms**

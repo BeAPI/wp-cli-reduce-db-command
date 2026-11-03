@@ -70,6 +70,9 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			'cli_visitor_details',
 			'cli_cookie_scan_url',
 
+			// Complianz
+			'cmplz_statistics',
+
 			// FacetWP
 			'facetwp_cache',
 			'facetwp_index',

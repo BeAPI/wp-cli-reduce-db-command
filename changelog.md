@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
+### Added
+- Truncate Complianz consent statistics (`cmplz_statistics`)
 
 ## [0.0.5] - 2025-02-14
 ### Changed
