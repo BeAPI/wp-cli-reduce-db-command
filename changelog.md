@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.0.6] - 2026-11-03
+### Added
+- Truncate Complianz consent statistics (`cmplz_statistics`)
+- Truncate the WP Cerber tables holding personal data: `cerber_acl`, `cerber_blocks`, `cerber_lab`, `cerber_lab_ip`, `cerber_qmem` and `cerber_uss` (user sessions with WordPress session tokens). `cerber_lab_net` is matched by `cerber_lab` too
+
 ## [0.0.5] - 2025-02-14
 ### Changed
 - Improve SearchWP, Yoast SEO, WP Rocket & ActionScheduler exclusion
