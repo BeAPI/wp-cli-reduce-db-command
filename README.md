@@ -26,7 +26,7 @@ The following plugin data will be purged during optimization:
 - **FacetWP**
 - **FormidableForms**
 - **GDPR Cookie Consent**
-- **GravityForms**
+- **GravityForms** (entries, form views and draft submissions)
 - **Log HTTP Requests**
 - **Matomo**
 - **PublishPress Future (post-expirator)**
